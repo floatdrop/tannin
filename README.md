@@ -1,7 +1,7 @@
 # tannin
 [![Go Reference](https://pkg.go.dev/badge/github.com/floatdrop/tannin.svg)](https://pkg.go.dev/github.com/floatdrop/tannin)
 [![build](https://github.com/floatdrop/tannin/actions/workflows/ci.yml/badge.svg)](https://github.com/floatdrop/tannin/actions/workflows/ci.yml)
-![Coverage](https://img.shields.io/badge/Coverage-44.4%25-yellow)
+![Coverage](https://img.shields.io/badge/Coverage-67.5%25-yellow)
 [![Go Report Card](https://goreportcard.com/badge/github.com/floatdrop/tannin)](https://goreportcard.com/report/github.com/floatdrop/tannin)
 
 
