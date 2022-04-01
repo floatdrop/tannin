@@ -1,0 +1,6 @@
+github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPnH1Wvgk=
+github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
+github.com/floatdrop/lru v1.3.0 h1:83abtaKjXcWrPmtzTAk2Ggq8DUKqI29YzrTrB8+vu0c=
+github.com/floatdrop/lru v1.3.0/go.mod h1:83zlXKA06Bm32JImNINCiTr0ldadvdAjUe5jSwIaw0s=
+github.com/floatdrop/slru v0.1.0 h1:DRAfvFQdEO/Ik0vkGVt6cBQYaXShvw+oS3Y0yaBi37M=
+github.com/floatdrop/slru v0.1.0/go.mod h1:9wLIxMeEby12tv9Rev0nEF60FHKJ/Ted98TcQD84pIA=
