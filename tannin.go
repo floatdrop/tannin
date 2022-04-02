@@ -33,13 +33,13 @@ type Evicted[K comparable, V any] struct {
 }
 
 func (T *Tannin[K, V]) Get(key K) *V {
-	T.c.add(T.hash(key))
-
 	T.w++
 	if T.w >= T.samples {
 		T.c.reset()
 		T.w = 0
 	}
+
+	T.c.add(T.hash(key))
 
 	if e := T.main.Get(key); e != nil {
 		return e
@@ -115,15 +115,15 @@ func (T *Tannin[K, V]) Remove(key K) *V {
 	return T.main.Remove(key)
 }
 
-func NewParams[K comparable, V any](windowSize int, mainASize int, mainBSize int, samples int) *Tannin[K, V] {
+func NewParams[K comparable, V any](windowSize int, probationSize int, protectedSize int, samples int) *Tannin[K, V] {
 	// https://mdlayher.com/blog/go-generics-draft-design-building-a-hashtable/#bonus-a-generic-hash-function
 	var m interface{} = make(map[K]struct{})
 	hf := (*mh)(*(*unsafe.Pointer)(unsafe.Pointer(&m))).hf
 
 	return &Tannin[K, V]{
 		window:  lru.New[K, V](windowSize),
-		c:       *newCM4(windowSize + mainASize + mainBSize),
-		main:    slru.NewParams[K, V](mainASize, mainBSize),
+		c:       *newCM4(windowSize + probationSize + protectedSize),
+		main:    slru.NewParams[K, V](probationSize, protectedSize),
 		hf:      hf,
 		samples: samples,
 	}
@@ -131,11 +131,11 @@ func NewParams[K comparable, V any](windowSize int, mainASize int, mainBSize int
 
 func New[K comparable, V any](size int, samples int) *Tannin[K, V] {
 	windowSize := int(DefaultWindowRatio * float64(size))
-	mainASize := int(DefaultSLRUSplit * float64(size-windowSize))
+	probationSize := int(DefaultSLRUSplit * float64(size-windowSize))
 	return NewParams[K, V](
 		windowSize,
-		mainASize,
-		size-windowSize-mainASize,
+		probationSize,
+		size-windowSize-probationSize,
 		samples,
 	)
 }
